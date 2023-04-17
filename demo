@@ -1,0 +1,60 @@
+test
+@Entity
+@Table(name = "activity_log")
+public class ActivityLog {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "initiated_by_id", referencedColumnName = "user_profile_id")
+    private UserProfile initiatedBy;
+    
+    @ManyToOne
+    @JoinColumn(name = "process_cd", referencedColumnName = "process_cd")
+    private ProcessRef processRef;
+    
+    @ManyToOne
+    @JoinColumn(name = "work_status_cd", referencedColumnName = "work_status_cd")
+    private WorkStatusRef workStatusRef;
+    
+    // getters and setters
+}
+
+@Entity
+@Table(name = "process_ref")
+public class ProcessRef {
+    
+    @Id
+    private String processCd;
+    
+    private String processName;
+    
+    // getters and setters
+}
+
+@Entity
+@Table(name = "work_status_ref")
+public class WorkStatusRef {
+    
+    @Id
+    private String workStatusCd;
+    
+    private String workStatusName;
+    
+    // getters and setters
+}
+
+@Entity
+@Table(name = "user_profile")
+public class UserProfile {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userProfileId;
+    
+    private String name;
+    
+    // getters and setters
+}
